@@ -5,6 +5,7 @@ register_converter(converters.FourDigitYearConverter, "conv_year")
 
 urlpatterns = [
     path('', views.index, name='home'),
-    path('<conv_year:year>', views.years),
-    path('<int:cat_id>', views.categories)
+    path('about/', views.about, name='about'),
+    path('bnt/<int:bnt_id>/', views.bnts, name='bnts'),
+    path('contacts/', views.contacts, name='contacts'),
 ]

@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <title>{{ tittle }}</title>
-  </head>
-  <body>
-  {{ menu }}
-  {{ menu.1 }}
-    <header>
-      <h1>Бантиковый сайт</h1>
-      <p>Который будет дорабатываться</p>
-    </header>
-  </body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+{% include 'main/includes/nav.html' %}
+
+<ul>
+    {% for b in bnts %}
+    {% if b.is_published %}
+    <li>
+        <h2>{{ b.name }}</h2>
+        <p>{{ b.color }}</p>
+        <p><a href="{% url 'bnts' b.id %}">Смотреть бант</a></p>
+        {% if not forloop.last %}
+        <hr>
+        {% endif %}
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+
+{% include 'main/includes/nav.html' %}
+
+{% endblock %}
